@@ -5,11 +5,11 @@ import imutils
 import time
 import cv2
 
-#defining prototext and caffemodel paths
+# defining prototext and caffemodel paths
 caffeModel = "C:/Users/Zachary/Documents/CVCourse/models/res10_300x300_ssd_iter_140000.caffemodel"
 prototextPath = "C:/Users/Zachary/Documents/CVCourse/models/deploy.prototxt"
 
-#Load Model
+# Load Model
 print("Loading model...................")
 net = cv2.dnn.readNetFromCaffe(prototextPath, caffeModel)
 
@@ -18,9 +18,9 @@ print("[INFO] starting video stream...")
 vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
-#loop the frams from the  VideoStream
-while True :
-    #Get the frams from the video stream and resize to 400 px
+# loop the frames from the  VideoStream
+while True:
+    # Get the frames from the video stream and resize to 400 px
     frame = vs.read()
     frame = imutils.resize(frame, width=400)
 
@@ -29,7 +29,7 @@ while True :
     # blobImage convert RGB (104.0, 177.0, 123.0)
     blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
 
-    # passing blob through the network to detect and pridiction
+    # passing blob through the network to detect and prediction
     net.setInput(blob)
     detections = net.forward()
 
@@ -39,7 +39,7 @@ while True :
         confidence = detections[0, 0, i, 2]
 
         # filter detections by confidence greater than the minimum confidence
-        if confidence < 0.5 :
+        if confidence < 0.5:
             continue
 
         # Determine the (x, y)-coordinates of the bounding box for the object
@@ -61,6 +61,6 @@ while True :
     if key == ord("q"):
         break
 
-# do a bit of cleanup
+# cleanup
 cv2.destroyAllWindows()
 vs.stop()
