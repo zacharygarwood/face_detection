@@ -1,1 +1,2 @@
+# Face Detection
 This was project was my first attempt at creating a face detection program. I used the OpenCV library for the face detection, and a few others for displaying the output to the screen. The two files in the models folder were obtained from the OpenCV library and one was for the model architecture and the other was for the weights for the models. You can read through the comments in the project to learn more about everything going on. I had a blast with the project! 
